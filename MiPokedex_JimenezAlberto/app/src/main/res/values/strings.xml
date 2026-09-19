@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MiPokedex_JimenezAlberto</string>
+    <string name="PokemonName">Pikachu</string>
+    <string name="PokemonNumber">#025</string>
+    <string name="Height">Altura</string>
+    <string name="Weight">Peso</string>
+    <string name="Ability">Habilidad</string>
+    <string name="TypeElectric">Eléctrico</string>
+    <string name="HeightPikachu">0,4m</string>
+    <string name="WeightPikachu">6,0kg</string>
+    <string name="AbilityPikachu">Elec. Estática</string>
+    <string name="Description">Cuando se enfada, este Pókemon descarga la energía que almacena en el interior de las bolsas de sus mejillas.</string>
+    <string name="Previous">Arbok N.°0024</string>
+    <string name="Next">Raichu N.°0026</string>
+</resources>
