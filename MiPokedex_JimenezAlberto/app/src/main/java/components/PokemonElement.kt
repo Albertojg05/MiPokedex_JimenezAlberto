@@ -2,9 +2,12 @@ package components
 
 import androidx.compose.runtime.Composable
 import Dominio.Pokemon
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,6 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,6 +30,8 @@ import androidx.compose.ui.unit.sp
 import data.bulbasaur
 import jimenez.alberto.mipokedex_jimenezalberto.ui.theme.Green
 import jimenez.alberto.mipokedex_jimenezalberto.ui.theme.MiPokedex_JimenezAlbertoTheme
+import jimenez.alberto.mipokedex_jimenezalberto.ui.theme.OffWhite
+import utilities.getColorByType
 
 @Composable
 fun PokemonRow(pokemon: Pokemon){
@@ -69,19 +75,94 @@ fun PokemonRow(pokemon: Pokemon){
             }
         }
         Spacer(modifier = Modifier.weight(1f))
-        Text(
+        val pokemonColors = getColorByType(pokemon.type)
+
+        NumberChip(
             text = pokemon.number.toString(),
-            fontSize = 12.sp,
-            textAlign = TextAlign.Center,
-            modifier = Modifier
-                .align(Alignment.Top)
-                .background(color = Green, shape = CircleShape)
-                .size(32.dp)
-                .wrapContentHeight(Alignment.CenterVertically)
+            colors = pokemonColors,
+            modifier = Modifier.align(Alignment.Top)
         )
     }
 }
 
+@Composable
+fun FavoritePokemon(pokemon: Pokemon) {
+    val colors = getColorByType(pokemon.type)
+
+    Column(
+        modifier = Modifier.padding(vertical = 15.dp),
+        verticalArrangement = Arrangement.spacedBy(10.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Box {
+            Box(
+                modifier = Modifier.border(
+                    BorderStroke(
+                        width = 5.dp,
+                        brush = Brush.sweepGradient(
+                            colors = listOf(
+                                colors.first,
+                                OffWhite,
+                                colors.first,
+                                OffWhite,
+                                colors.first
+                            )
+                        )
+                    )
+                )
+            ) {
+                Image(
+                    painter = painterResource(id = pokemon.image),
+                    contentDescription = "${pokemon.name} image",
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .width(75.dp)
+                )
+            }
+
+            NumberChip(
+                text = pokemon.number.toString(),
+                colors = colors,
+                modifier = Modifier.align(Alignment.BottomEnd)
+            )
+        }
+
+        Text(
+            text = pokemon.name,
+            style = MaterialTheme.typography.labelLarge
+        )
+    }
+}
+
+@Composable
+fun PokemonCell(pokemon: Pokemon) {
+    val colors = getColorByType(pokemon.type)
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Box {
+            Image(
+                painter = painterResource(id = pokemon.image),
+                contentDescription = "${pokemon.name} image",
+                modifier = Modifier
+                    .size(150.dp)
+                    .padding(10.dp)
+            )
+
+            NumberChip(
+                text = pokemon.number.toString(),
+                colors = colors,
+                modifier = Modifier.align(Alignment.TopEnd)
+            )
+        }
+
+        Text(
+            text = pokemon.name,
+            style = MaterialTheme.typography.labelLarge
+        )
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
@@ -89,4 +170,16 @@ fun GreetingPreview2() {
     MiPokedex_JimenezAlbertoTheme {
         PokemonRow(bulbasaur)
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview4() {
+    FavoritePokemon(pokemon = bulbasaur)
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview5() {
+    PokemonCell(pokemon = bulbasaur)
 }
