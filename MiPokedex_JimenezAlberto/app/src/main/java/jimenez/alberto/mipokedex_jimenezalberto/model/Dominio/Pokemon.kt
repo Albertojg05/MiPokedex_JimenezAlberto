@@ -1,8 +1,8 @@
-package Dominio
+package jimenez.alberto.mipokedex_jimenezalberto.model.Dominio
 
 data class Pokemon(
     val name: String,
-    val number: Number,
+    val number: Int,
     val type: String,
     val description: String,
     val height: Float,

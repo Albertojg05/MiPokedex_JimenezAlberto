@@ -1,4 +1,4 @@
-package utilities
+package jimenez.alberto.mipokedex_jimenezalberto.utilities
 
 import androidx.compose.ui.graphics.Color
 import jimenez.alberto.mipokedex_jimenezalberto.ui.theme.*

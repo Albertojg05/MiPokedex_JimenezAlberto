@@ -14,4 +14,5 @@
     <string name="Next">Raichu N.°0026</string>
     <string name="title_activity_pokedex_compose">PokedexCompose</string>
     <string name="title_activity_menu_pokedex">MenuPokedex</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>

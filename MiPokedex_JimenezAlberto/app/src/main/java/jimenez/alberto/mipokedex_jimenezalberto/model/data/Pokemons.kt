@@ -1,6 +1,6 @@
-package data
+package jimenez.alberto.mipokedex_jimenezalberto.model.data
 
-import Dominio.Pokemon
+import jimenez.alberto.mipokedex_jimenezalberto.model.Dominio.Pokemon
 import jimenez.alberto.mipokedex_jimenezalberto.R
 
 val pokemonList = listOf(
@@ -27,3 +27,15 @@ val bulbasaur = Pokemon(
     ability = "Overgrow",
     image = R.drawable.bulbasaur
 )
+
+fun getFavoritePokemon(): List<Pokemon>{
+    return pokemonList.filter {
+        it.favorite
+    }
+}
+fun getPokemonByNumber(pokemon: Int): Pokemon {
+        return pokemonList.filter {
+            it.number == pokemon
+        }.first()
+
+}

@@ -1,11 +1,11 @@
-package components
+package jimenez.alberto.mipokedex_jimenezalberto.view.components
 
 import androidx.compose.runtime.Composable
-import Dominio.Pokemon
+import jimenez.alberto.mipokedex_jimenezalberto.model.Dominio.Pokemon
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,23 +15,19 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import data.bulbasaur
-import jimenez.alberto.mipokedex_jimenezalberto.ui.theme.Green
+import jimenez.alberto.mipokedex_jimenezalberto.model.data.bulbasaur
 import jimenez.alberto.mipokedex_jimenezalberto.ui.theme.MiPokedex_JimenezAlbertoTheme
 import jimenez.alberto.mipokedex_jimenezalberto.ui.theme.OffWhite
-import utilities.getColorByType
+import jimenez.alberto.mipokedex_jimenezalberto.utilities.getColorByType
 
 @Composable
 fun PokemonRow(pokemon: Pokemon){
@@ -135,11 +131,12 @@ fun FavoritePokemon(pokemon: Pokemon) {
 }
 
 @Composable
-fun PokemonCell(pokemon: Pokemon) {
+fun PokemonCell(pokemon: Pokemon, onNavigateToDetail: (pokemon: Int) -> Unit) {
     val colors = getColorByType(pokemon.type)
 
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.clickable(true, onClick = {onNavigateToDetail(pokemon.number)})
     ) {
         Box {
             Image(
@@ -181,5 +178,5 @@ fun GreetingPreview4() {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview5() {
-    PokemonCell(pokemon = bulbasaur)
+    PokemonCell(pokemon = bulbasaur, {})
 }
