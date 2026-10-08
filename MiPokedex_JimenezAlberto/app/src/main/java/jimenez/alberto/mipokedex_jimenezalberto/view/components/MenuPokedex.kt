@@ -22,20 +22,20 @@ import jimenez.alberto.mipokedex_jimenezalberto.navigation.MyApp
 import jimenez.alberto.mipokedex_jimenezalberto.ui.theme.MiPokedex_JimenezAlbertoTheme
 
 @Composable
-fun MenuPokedex(pokemonList: List<Pokemon>) {
+fun MenuPokedex(pokemonList: List<Pokemon>, onNavigateOnDetail: (pokemon: Int)-> Unit) {
     LazyColumn {
         items(pokemonList) { pokemon ->
-            PokemonRow(pokemon = pokemon)
+            PokemonRow(pokemon = pokemon, onNavigateOnDetail)
         }
     }
 }
 
 
 @Composable
-fun FavoritesRow(favoriteList: List<Pokemon>) {
+fun FavoritesRow(favoriteList: List<Pokemon>, onNavigateOnDetail: (pokemon: Int) -> Unit) {
     LazyRow {
         items(favoriteList) { pokemon ->
-            FavoritePokemon(pokemon = pokemon)
+            FavoritePokemon(pokemon = pokemon,onNavigateOnDetail)
         }
     }
 }
@@ -56,9 +56,9 @@ fun PokedexGrid(pokemonList: List<Pokemon>, onNavigateOnDetail: (pokemon: Int)->
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview7() {
+fun MenuPokedexPreview() {
     MiPokedex_JimenezAlbertoTheme {
-        PokedexGrid(
+        MenuPokedex(
             pokemonList = pokemonList, {pokemon ->}
         )
     }

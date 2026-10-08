@@ -30,11 +30,12 @@ import jimenez.alberto.mipokedex_jimenezalberto.ui.theme.OffWhite
 import jimenez.alberto.mipokedex_jimenezalberto.utilities.getColorByType
 
 @Composable
-fun PokemonRow(pokemon: Pokemon){
+fun PokemonRow(pokemon: Pokemon, onNavigateToDetail: (pokemon: Int) -> Unit){
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(10.dp)
+            .clickable(true, onClick = {onNavigateToDetail(pokemon.number)}),
     ) {
         Image(
             painter = painterResource(id = pokemon.image),
@@ -82,13 +83,15 @@ fun PokemonRow(pokemon: Pokemon){
 }
 
 @Composable
-fun FavoritePokemon(pokemon: Pokemon) {
+fun FavoritePokemon(pokemon: Pokemon, onNavigateToDetail: (pokemon: Int) -> Unit) {
     val colors = getColorByType(pokemon.type)
 
     Column(
-        modifier = Modifier.padding(vertical = 15.dp),
+        modifier = Modifier.padding(vertical = 15.dp)
+            .clickable(true, onClick = {onNavigateToDetail(pokemon.number)}),
         verticalArrangement = Arrangement.spacedBy(10.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+
     ) {
         Box {
             Box(
@@ -165,14 +168,14 @@ fun PokemonCell(pokemon: Pokemon, onNavigateToDetail: (pokemon: Int) -> Unit) {
 @Composable
 fun GreetingPreview2() {
     MiPokedex_JimenezAlbertoTheme {
-        PokemonRow(bulbasaur)
+        PokemonRow(bulbasaur, {})
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview4() {
-    FavoritePokemon(pokemon = bulbasaur)
+    FavoritePokemon(pokemon = bulbasaur,{})
 }
 
 @Preview(showBackground = true)

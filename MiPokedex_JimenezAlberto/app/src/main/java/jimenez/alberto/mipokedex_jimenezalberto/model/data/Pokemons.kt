@@ -2,6 +2,7 @@ package jimenez.alberto.mipokedex_jimenezalberto.model.data
 
 import jimenez.alberto.mipokedex_jimenezalberto.model.Dominio.Pokemon
 import jimenez.alberto.mipokedex_jimenezalberto.R
+import jimenez.alberto.mipokedex_jimenezalberto.utilities.getColorByType
 
 val pokemonList = listOf(
     Pokemon("Bulbasaur", 1, "Grass/Poison", "There is a plant seed on its back from the day this Pokémon is born.", 0.7f, 6.9f, false, "Overgrow", R.drawable.bulbasaur),
